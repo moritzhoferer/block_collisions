@@ -8,7 +8,7 @@ import sys
 if 'momo' in plt.style.available:
     plt.style.use('momo')
 
-data = np.loadtxt('cmake-build-debug/m2_{}.dat'.format(int(sys.argv[1])))
+data = np.loadtxt('m2_{}.dat'.format(int(sys.argv[1])))
 
 time = data[:, 0]
 x1 = data[:, 1]
@@ -37,6 +37,6 @@ ax.set_xlabel(r'Time')
 # ax.set_xlim(min(date)-10, max(date)+10)
 # ax.set_ylim(.385, .505)
 
-fig.savefig('m2_{}.pdf'.format(int(sys.argv[1])))
+fig.savefig('graphics/m2_{}.pdf'.format(int(sys.argv[1])))
 
 
