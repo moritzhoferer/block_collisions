@@ -18,6 +18,8 @@
 #include <stdlib.h>
 #include <vector>
 
+#include "timer.h"
+
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -94,7 +96,12 @@ int main(int argc, char **argv) {
         vector<int> record_mass_ratio;
         vector<int> record_collision_counter;
 
+        timer total_time;
+        total_time.start();
+
         do {
+            timer iteration_time;
+            iteration_time.restart();
             cout << "Mass ratio: 1:" << masses[1] << endl;
             collision_counter = 0;
             velocities[0] = 0; velocities[1] = -1;
@@ -120,10 +127,16 @@ int main(int argc, char **argv) {
             record_mass_ratio.push_back(masses[1]);
             record_collision_counter.push_back(collision_counter);
             masses[1] *= 100;
-        
-        }
-        while(masses[1] < m2_max);
 
+            iteration_time.stop();
+            // cout << iteration_time.get_time() << endl;
+            iteration_time.check();        
+        }
+        while(masses[1] <= m2_max);
+        
+        total_time.stop();
+        total_time.check("Total calculation time");
+        
         output_file_name = "data/m2_collisions.csv";
         ofstream output_file;
         output_file.open(output_file_name);
