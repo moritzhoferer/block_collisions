@@ -4,6 +4,5 @@ This is another pretty inefficient way to determine PI. This implementation is m
 
 
 TODO:
-* Combine the code, that always both trajectory and total number of collisions are in the output.
 * ~~Export data in two csv files.~~
-* Adapt `trajectory.py` to the csv input.
+* ~~Adapt `trajectory.py` to the csv input.~~
