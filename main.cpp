@@ -94,7 +94,8 @@ int main(int argc, char **argv) {
         vector<int> record_mass_ratio;
         vector<int> record_collision_counter;
 
-        do{
+        do {
+            cout << "Mass ratio: 1:" << masses[1] << endl;
             collision_counter = 0;
             velocities[0] = 0; velocities[1] = -1;
 
