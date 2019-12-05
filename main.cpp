@@ -8,6 +8,8 @@
 // For mass ratios larger than 1:1e4, the program calculates the trajectory of the two masses.
 // Otherwise the program determins the number of collisons starting of a mass ration 1:1 and increasing the 
 // second mass by a factor of 100 in every iteration.
+//
+// Pi: 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 
 #include <iostream>
 #include <fstream>
@@ -26,7 +28,8 @@ int main(int argc, char **argv) {
     unsigned long long int collision_counter = 0;
     string output_file_name;
 
-    masses[0] = 1; masses[1] = strtod(argv[1], nullptr);
+    masses[0] = 1;
+    masses[1] = strtod(argv[1], nullptr);
 
     if (masses[1] <= 10000){
 
@@ -36,7 +39,6 @@ int main(int argc, char **argv) {
         vector<double> times;
 
         velocities[0] = 0., velocities[1] = -1.;
-        output_file_name = "m2_" + string(argv[1]) + ".dat";
         times.push_back(0.);
         places.push_back(1.); places.push_back(1.5);
 
@@ -75,11 +77,12 @@ int main(int argc, char **argv) {
 
         cout << "Number of collisions: " << collision_counter << endl;
 
+        output_file_name = "data/m2_" + string(argv[1]) + ".csv";
         ofstream output_file;
         output_file.open(output_file_name);
-        output_file << "# t \t x1 \t x2" << endl;
+        output_file << "time,x_1,x_2" << endl;
         for (unsigned int i = 0; i < times.size(); ++i) {
-            output_file << times[i] << "\t" << places[2*i] << "\t" << places[2*i + 1] << endl;
+            output_file << times[i] << "," << places[2*i] << "," << places[2*i + 1] << endl;
         }
         output_file.close();
 
@@ -88,10 +91,8 @@ int main(int argc, char **argv) {
         double m2_max = masses[1];
         masses[1] = 1;
 
-        output_file_name = "m2_collisions.dat";
-        ofstream output_file;
-        output_file.open(output_file_name);
-        output_file << "# m2 \t collisions" << endl;
+        vector<int> record_mass_ratio;
+        vector<int> record_collision_counter;
 
         do{
             collision_counter = 0;
@@ -115,13 +116,20 @@ int main(int argc, char **argv) {
             }
             while (velocities[1] < 0. or velocities[1] < abs(velocities[0]));
 
-            output_file << masses[1] << "\t" << collision_counter << endl;
-
+            record_mass_ratio.push_back(masses[1]);
+            record_collision_counter.push_back(collision_counter);
             masses[1] *= 100;
-
+        
         }
         while(masses[1] < m2_max);
 
+        output_file_name = "data/m2_collisions.csv";
+        ofstream output_file;
+        output_file.open(output_file_name);
+        output_file << "mass_ratio,collisions" << endl;
+        for(unsigned int i = 0; i < record_mass_ratio.size(); ++i){
+            output_file << record_mass_ratio[i] << "," << record_collision_counter[i] << endl;
+        }
         output_file.close();
     }
 
