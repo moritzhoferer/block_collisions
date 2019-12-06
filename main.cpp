@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <omp.h>
 
 #include "timer.h"
 
@@ -110,6 +111,13 @@ int main(int argc, char **argv) {
                 // velocities after the collision of the two blocks
                 v[0] = 2. * (masses[0] * velocities[0] + masses[1] * velocities[1])/(masses[0] + masses[1]) - velocities[0];
                 v[1] = 2. * (masses[0] * velocities[0] + masses[1] * velocities[1])/(masses[0] + masses[1]) - velocities[1];
+                // Parallelization triples the calculation time. NOT SO GOOD.
+                // #pragma omp parallel num_threads(2)
+                // {
+                //     int thread_id = omp_get_thread_num();
+                //     v[thread_id] = 2. * (masses[0] * velocities[0] + masses[1] * velocities[1])/(masses[0] + masses[1]) - velocities[thread_id];
+
+                // }
                 collision_counter += 1;
 
                 if (v[0] < 0){

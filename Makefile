@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -flto -march=native -mtune=native -O3 -Wall
+CXXFLAGS = -flto -march=native -mtune=native -O3 -Wall -fopenmp
 
 all: block_collisions
 
