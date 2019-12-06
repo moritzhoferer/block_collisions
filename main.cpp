@@ -17,7 +17,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-#include <omp.h>
+
+// Parallelization stuff
+// #include <omp.h>
 
 #include "timer.h"
 
