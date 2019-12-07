@@ -31,12 +31,11 @@ int main(int argc, char **argv) {
     string output_file_name;
     unsigned long long int mass_ratio = strtod(argv[1], nullptr);
     
-    // if (record_trajectories(mass_ratio))
-    if(false)
+    if (record_trajectories(mass_ratio))
     {
         Experiment collision_experiment(mass_ratio, true); 
         collision_experiment.simulate();
-        cout << "Number of collision: " <<collision_experiment.get_collision_counter() << endl;
+        cout << "Number of collision: " << collision_experiment.get_collision_counter() << endl;
 
         if (collision_experiment.trajectories_available()){
             // load data

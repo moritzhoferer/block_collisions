@@ -21,3 +21,5 @@ public:
     std::vector<double> get_v1_record() const;
     std::vector<double> get_v2_record() const;
 };
+
+bool record_trajectories(unsigned long long int m)
