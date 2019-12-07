@@ -19,7 +19,7 @@
 #include <vector>
 
 #include "timer.h"
-#include "core.h"
+#include "core.cpp"
 
 using namespace std;
 
@@ -32,6 +32,7 @@ int main(int argc, char **argv) {
     unsigned long long int mass_ratio = strtod(argv[1], nullptr);
     
     if (record_trajectories(mass_ratio))
+    // if (true)
     {
         Experiment collision_experiment(mass_ratio, true); 
         collision_experiment.simulate();
@@ -65,9 +66,11 @@ int main(int argc, char **argv) {
         do{
             Experiment collision_experiment(mass_ratio, false); 
             collision_experiment.simulate();
+            cout << "Number of collision: " << collision_experiment.get_collision_counter() << endl;
             mass_ratios.push_back(mass_ratio);
             counts.push_back(collision_experiment.get_collision_counter());
-            mass_ratio *= 2;
+            mass_ratio *= 100;
+            collision_experiment.~Experiment();
         } while (mass_ratio <= max_ratio);
         
         output_file_name = "data/collisions_counts.csv";
@@ -81,9 +84,7 @@ int main(int argc, char **argv) {
     }
 
     total_time.stop();
-    total_time.check("Total calculation time");
-    
-    
+    total_time.check("Total calculation time");   
 
     // } else {
 
