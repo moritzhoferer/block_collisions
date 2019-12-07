@@ -12,7 +12,7 @@ private:
     std::vector<double> _record_time, _record_x1, _record_x2, _record_v1, _record_v2;
 
 public:
-    Experiment(const int mass_ratio, bool record_trajectories);
+    Experiment(unsigned long long int mass_ratio, bool record_trajectories);
     ~Experiment();
     void simulate();
     void record_parameters();
@@ -25,7 +25,7 @@ public:
     std::vector<double> get_v2_record() const;
 };
 
-Experiment::Experiment(const int mass_ratio, bool record_trajectories)
+Experiment::Experiment(unsigned long long int mass_ratio, bool record_trajectories)
 {
     _collision_counter = 0;
     _time = 0.;

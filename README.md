@@ -4,6 +4,6 @@ This is another pretty inefficient way to determine PI. This implementation is m
 
 
 TODO:
-* **ISSUE** For mass ratios above 1:10**8 the program give a wrong results.
+* ~~**ISSUE** For mass ratios above 1:10**8 the program give a wrong results.~~
 * ~~Export data in two csv files.~~
 * ~~Adapt `trajectory.py` to the csv input.~~
