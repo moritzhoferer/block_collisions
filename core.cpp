@@ -8,7 +8,7 @@ class Experiment
 private:
     bool _record_trajectories;
     double _x1, _x2, _v1, _v2, _v_com, _time, _dt;
-    unsigned long long int _m1, _m2, _collision_counter;
+    unsigned long long int  _m1, _m2, _collision_counter;
     std::vector<double> _record_time, _record_x1, _record_x2, _record_v1, _record_v2;
 
 public:
