@@ -86,6 +86,7 @@ void Experiment::simulate()
     {
         // continue trajectories a bit after last collision
         _dt = 1;
+        _time += _dt;
         _x1 += _v1 * _dt;
         _x2 += _v2 * _dt;
         record_parameters();
